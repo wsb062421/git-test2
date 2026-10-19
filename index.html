@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07131f">
+  <meta name="description" content="一个使用 Canvas 实现的经典贪吃蛇小游戏。">
+  <title>贪吃蛇 · Snake</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🐍</span>
+        <div class="brand-copy">
+          <h1>贪吃蛇</h1>
+          <p>SNAKE · 经典街机</p>
+        </div>
+      </div>
+
+      <div class="scores" aria-label="分数">
+        <div class="score-pill score-pill--accent">
+          <span class="score-label">得分</span>
+          <strong class="score-value" id="scoreValue" aria-live="polite">0</strong>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">最高分</span>
+          <strong class="score-value" id="bestValue">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <div class="board-card">
+        <div class="board-inner">
+          <canvas id="gameCanvas" width="480" height="480">
+            你的浏览器不支持 Canvas，请使用较新的浏览器打开。
+          </canvas>
+
+          <div class="overlay" id="overlay" role="dialog" aria-labelledby="overlayTitle" aria-describedby="overlayMessage">
+            <div class="overlay-content">
+              <div class="overlay-icon" id="overlayIcon" aria-hidden="true">🐍</div>
+              <h2 id="overlayTitle">准备好了吗？</h2>
+              <p id="overlayMessage">吃掉果实获得分数，小心不要撞到墙和自己。</p>
+              <p class="final-score" id="finalScore" hidden>本局得分 <strong id="finalScoreValue">0</strong></p>
+              <button class="btn btn-primary" id="overlayBtn" type="button">开始游戏</button>
+              <p class="overlay-hint" id="overlayHint">按方向键 / WASD 也可以开始</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <section class="card controls-card" aria-labelledby="controlsTitle">
+          <div class="card-title-row">
+            <h2 id="controlsTitle">方向控制</h2>
+            <span class="mini-badge">键盘 / 触屏</span>
+          </div>
+          <p class="controls-note">方向键或 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></p>
+
+          <div class="dpad">
+            <button class="dir-btn dir-up" type="button" data-dir="up" aria-label="向上移动">↑</button>
+            <button class="dir-btn dir-left" type="button" data-dir="left" aria-label="向左移动">←</button>
+            <button class="dir-btn dir-down" type="button" data-dir="down" aria-label="向下移动">↓</button>
+            <button class="dir-btn dir-right" type="button" data-dir="right" aria-label="向右移动">→</button>
+          </div>
+        </section>
+
+        <button class="btn btn-secondary restart-btn" id="restartBtn" type="button">
+          <span class="restart-icon" aria-hidden="true">↻</span> 重新开始
+        </button>
+
+        <section class="card tips-card" aria-label="游戏规则">
+          <p><span class="dot dot--food" aria-hidden="true"></span>吃到果实 <strong>+10 分</strong>，速度随之提升。</p>
+          <p><span class="dot dot--danger" aria-hidden="true"></span>撞墙或撞到自己，游戏结束。</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>吃掉果实 · 刷新纪录</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span>保持专注，别咬到自己</span>
+    </footer>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
